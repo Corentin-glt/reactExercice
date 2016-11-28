@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import Input from './input';
+import {browserHistory} from 'react-router';
 
 export default class App extends React.Component{
     constructor(props){
@@ -15,6 +16,7 @@ export default class App extends React.Component{
 
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     updateUsername(username){
@@ -25,21 +27,24 @@ export default class App extends React.Component{
         this.setState({password: password.target.value});
     }
 
+    onSubmit(){
+        browserHistory.push('/profile');
+    }
+
     render(){
         return (
             <div>
-                <h1>Bonjour</h1>
+                <h1>Login</h1>
                 <form>
-                    <Input type="text" placeholder="Username" text="Username: " update={this.updateUsername}/>
-                    <Input type="password" placeholder="Password" text="Password: " update={this.updatePassword}/>
-                    <button onClick={() => this.onClick()}>Submit</button>
+                    <Input type="text" placeholder="Username"
+                           text="Username: " update={this.updateUsername}/>
+
+                    <Input type="password" placeholder="Password"
+                           text="Password: " update={this.updatePassword}/>
+
+                    <button onClick={() => this.onSubmit()}>Submit</button>
                 </form>
             </div>
         )
-    }
-
-    onClick(){
-        alert('Username: ' + this.state.username +
-            ' Password: ' + this.state.password);
     }
 }

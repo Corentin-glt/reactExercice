@@ -8,7 +8,10 @@ export default class Input extends React.Component{
     render(){
         return (
             <div>
-                {this.props.text}<input type={this.props.type} onChange={this.props.update} placeholder={this.props.placeholder}/>
+                {this.props.text}
+                <input type={this.props.type}
+                onChange={this.props.update}
+                placeholder={this.props.placeholder}/>
             </div>
         )
     }
