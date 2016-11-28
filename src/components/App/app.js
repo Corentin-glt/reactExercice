@@ -10,6 +10,13 @@ export default class App extends React.Component{
         super(props);
 
         this.state = {
+
+            users:[
+                {username:'corentin', password: 'corentin'},
+                {username:'jocelyne', password: 'jocelyne'},
+                {username:'jeremie', password: 'jeremie'}
+            ],
+
             username: '',
             password: ''
         };
@@ -28,7 +35,12 @@ export default class App extends React.Component{
     }
 
     onSubmit(){
-        browserHistory.push('/profile');
+        for(var user of this.state.users){
+            if (user.username === this.state.username && user.password === this.state.password){
+                localStorage.setItem('username', JSON.stringify(user.username));
+                browserHistory.push('/profile');
+            }
+        }
     }
 
     render(){
