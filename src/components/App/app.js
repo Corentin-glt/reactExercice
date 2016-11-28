@@ -5,17 +5,41 @@ import React from 'react';
 import Input from './input';
 
 export default class App extends React.Component{
-    onClick(){
-        alert('coucou');
+    constructor(props){
+        super(props);
+
+        this.state = {
+            username: '',
+            password: ''
+        };
+
+        this.updateUsername = this.updateUsername.bind(this);
+        this.updatePassword = this.updatePassword.bind(this);
     }
+
+    updateUsername(username){
+        this.setState({username: username.target.value});
+    }
+
+    updatePassword(password){
+        this.setState({password: password.target.value});
+    }
+
     render(){
         return (
             <div>
                 <h1>Bonjour</h1>
-                <Input type="text" placeholder="Username" text="Username: "/>
-                <Input type="password" placeholder="Password" text="Password: "/>
-                <button onClick={() => this.onClick()}>Submit</button>
+                <form>
+                    <Input type="text" placeholder="Username" text="Username: " update={this.updateUsername}/>
+                    <Input type="password" placeholder="Password" text="Password: " update={this.updatePassword}/>
+                    <button onClick={() => this.onClick()}>Submit</button>
+                </form>
             </div>
         )
+    }
+
+    onClick(){
+        alert('Username: ' + this.state.username +
+            ' Password: ' + this.state.password);
     }
 }
