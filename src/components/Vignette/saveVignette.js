@@ -21,10 +21,7 @@ export default class saveVignette extends React.Component {
         this.setState({nameVignette: nameVignette});
     }
 
-    onSubmit(){
-        localStorage.setItem('nameVignette',this.state.nameVignette.toString());
-        browserHistory.push('/vignette');
-    }
+
 
     render() {
         return (
