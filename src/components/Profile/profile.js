@@ -3,11 +3,20 @@
  */
 import React from 'react';
 import { Link } from 'react-router';
-import App from '../App/app';
 
 export default class Profile extends React.Component{
+    constructor(props){
+
+        super(props);
+
+        this.state = {
+          username: ''
+        };
+    }
+
     getUsername(){
-      let username = JSON.parse(localStorage.getItem('username'));
+      this.state.username = JSON.parse(localStorage.getItem('username'));
+        return this.state.username;
     }
 
     render() {
@@ -20,6 +29,7 @@ export default class Profile extends React.Component{
                     <li><Link to="/">logout</Link></li>
                 </ul>
                 {this.props.children}
+                <p>Username: {this.getUsername()}</p>
             </div>
         )
     }
